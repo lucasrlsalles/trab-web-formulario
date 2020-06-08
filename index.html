@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+</head>
+<body>
+    <header>
+        <h1>AVA2</h1>
+        <h2>Formulário</h2>
+
+    </header>
+    <form name="formulario" onsubmit="return validate()">
+        <fieldset>
+        <legend>Dados</legend>
+        <!-- Campo nome -->
+        <div>
+            <label for="nome">Nome :</label>
+            <input name="nome" type="text" minlength="15" placeholder="Insira seu Nome Completo..." id="barra">
+        </div>
+
+        <!-- Campo e-mail -->
+        <div>
+            <label for="email">Email :</label>
+            <input name="email" type="text" placeholder="mail@example.com" id="barra">
+        </div>
+
+        <!-- Campo data do nascimento -->
+        <div>
+            <label for="data">Data de Nascimento :</label>
+            <input id="data" name="data" type="date">
+        </div>
+        
+        <!-- Campo sexo -->
+        <div>
+            <label for="sexo">Sexo :</label>
+            <select name="sexo">
+                <option name="masculino" value="M">Masculino</option>
+                <option name="feminino" value="F">Feminino</option>
+            </select>
+        </div>
+
+        <!-- Campo estado civil -->
+        <div>
+            <label for="estadocivil">Estado Civil :</label>
+            <select name="estadocivil">
+                <option value="solteirx" id="solteirx">Solteiro(a)</option>
+                <option value="casadx" id="casadx">Casado(a)</option>
+                <option value="outros" id="outros">Outros</option>
+            </select>
+        </div>
+
+        <!-- Campo áreas de interesse -->
+        <div id="interesse">
+                <label for="interesses">Áreas de Interesse :</label> </p>
+                <input name="int1" type="checkbox" value="analise" id="analise"> Análise </p>
+                <input name="int2" type="checkbox" value="dados" id="dados"> Banco de Dados </p>
+                <input name="int3" type="checkbox" value="desenv" id="desenvolvimento"> Densenvolvimento </p>
+                <input name="int4" type="checkbox" value="engenharia" id="engenharia"> Engenharia de Software </p>
+                <input name="int5" type="checkbox" value="redes" id="redes"> Redes de computadores </p>
+        </div>
+
+        <!-- Botão de Envio -->
+        <div>
+            <input onclick="validate()" type="button" value="Enviar Formulário" id="enviar">
+        </div>
+        </fieldset>
+    </form>
+
+     <!-- SCRIPT -->
+    <script type="text/JavaScript">
+            // função de validação
+            function validate() {                   
+                
+                // Validando Nome
+                var nome = document.formulario.nome.value;
+
+                if (nome == "" || nome == null) {
+                    alert("Campo Nome não preenchido.");
+                    formulario.nome.focus();
+                    return false;
+                }
+                if (nome.length<15){
+                    alert("Campo Nome preenchido incorretamente. \nVerifique se: \n- Inseriu 15 caracteres.");
+                    formulario.nome.focus();
+                    return false;
+                }
+
+                // Validando Email
+                var email = document.formulario.email.value;
+
+                if (email == "" || email == null) {
+                    alert("Campo Email não preenchido.");
+                    formulario.email.focus();
+                    return false;
+                }
+                if (email.length<10 || email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+                    alert("Campo Email preenchido incorretamente.\nVerifique se: \n- Inseriu 10 caracteres.\n- Inseriu @ e .");
+                    formulario.email.focus();
+                    return false;
+                }
+
+                // Validando Data de Nascimento
+                var data = document.formulario.data.value;
+
+                if (data == "" || data == null) {
+                    alert("Campo Data de Nascimento não preenchido.");
+                    formulario.data.focus();
+                    return false;
+                }
+                
+                // Validando Sexo
+                var sexo = document.formulario.sexo.value;
+
+                if (sexo == "" || sexo == null) {
+                    alert("Campo Sexo não preenchido.");
+                    formulario.sexo.focus();
+                    return false;
+                }
+
+                // Validando Estado Civil
+                var estadocivil = document.formulario.estadocivil.value;
+
+                if (estadocivil == "" || estadocivil == null) {
+                    alert("Campo Estado Civil não preenchido.");
+                    formulario.estadocivil.focus();
+                    return false;
+                }
+                
+                // Se for solteiro(a) tem que ser maior de 15.
+                if (estadocivil == "solteirx") {
+                    var data = document.getElementById("data").value; // Valor do Input
+                    data = data.replace(/\//g, "-"); // Retirando eventuais barras "/" por "-"
+                    var data_array = data.split("-"); // Quebrando a Data em um Array
+
+                    // IE formato dd/MM/yyyy
+                    if(data_array[0].length != 4){
+                        data = data_array[2]+"-"+data_array[1]+"-"+data_array[0]; // Remontando a Data no formato YYYY/MM/DD
+                    }
+
+                    // Área de comparação das datas e calculo da idade
+                    var hoje = new Date();
+                    var nasc  = new Date(data);
+                    var idade = hoje.getFullYear() - nasc.getFullYear();
+                    var m = hoje.getMonth() - nasc.getMonth();
+                    if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+
+                    if(idade < 15){
+                        alert("Você precisa ter no mínimo 15 anos.");
+                        formulario.data.focus();
+                        return false;
+                    }
+                }   
+
+                // Validando Área de Interesses
+                var interesse1 = document.getElementById("analise").checked;
+                var interesse2 = document.getElementById("dados").checked;
+                var interesse3 = document.getElementById("desenvolvimento").checked;
+                var interesse4 = document.getElementById("engenharia").checked;
+                var interesse5 = document.getElementById("redes").checked;
+
+                if ((interesse1 == "") && (interesse2 == "") && (interesse3 == "") &&
+                (interesse4 == "") && (interesse5 == "")) {
+                    alert("Campo Área de Interesses não preenchido.");
+                    formulario.interesses.focus();
+                    return false;
+                }
+
+                else {
+                    alert("Dados Enviados!");
+                    formulario.submit();
+                    return true;
+                }
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* CSS */
+
+header {
+	background: #00967c;
+    padding: 20px 0px;
+    text-align: center;
+    font-family: Arial;
+}
+
+body {
+    background-color: #4b4b4b;
+    margin: 0px;
+    padding: 0px;
+} /* Background colorido */
+
+h1 {
+    color: #ffffff;
+    font-size: 50px;
+    font-family: Arial;
+    margin-top: 12px;
+    width: 800px;
+    line-height: 0rem;
+    
+} /* Colorindo o h1 */
+
+h2 {
+    color: #ffffff;
+    font-size: 30px;
+    font-family: Arial;
+    margin-top: 12px;
+    width: 900px;
+    line-height: 0rem;    
+}
+
+fieldset {
+    margin-top:0px;
+    padding: 15px 50px;
+}
+
+legend {
+    color:#ffffff;
+    font-size: 25px;
+    padding: 0 5px;
+    font-family: Arial;
+    margin-top: 0px;
+} /* Editando o legend */
+
+#txt1 {
+    font-size: 20px;
+    color:#ffffff;
+}
+
+form {
+    margin: 10px 0px;
+    padding: 0 500px;
+}
+
+form label {
+    display: inline-block;
+	font-size: 18px;
+    margin: 10px 0 10px;
+    font-family: Arial;
+    color: #ffffff;
+    width: 200px;
+}
+
+form input {
+	display: inline-block;
+	margin: 0px;
+    padding: 10px 5px;
+    font-family: Arial;
+    border-radius: 10px;
+    border: none;
+}
+
+form select {
+	display: inline-block;
+	margin: 0 0 10px;
+    padding: 10px 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+#barra {
+    width: 200px;
+}
+
+
+#data {
+    width: 130px;
+    padding: 10px 5px;
+}
+
+#interesse {
+    display: inline-block;
+    color: #ffffff;
+    font-family: arial;
+    font-size: 15px;
+    text-align: left;
+}
+
+#enviar {
+    background: #00967c;
+    color: #ffffff;
+    font-size: 17px;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-left: 175px;
+    width: auto;
+    border: none;
+}
+
